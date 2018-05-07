@@ -51,15 +51,15 @@ def setup_cloudgenix_connection(module=None, auth_token=None, controller=None, t
         ssl_verify_mod = module.params.get('ssl_verify')
         ignore_region_mod = module.params.get('ignore_region')
 
-        if auth_token_mod:
+        if auth_token_mod is not None:
             auth_token = auth_token_mod
-        if controller_mod:
+        if controller_mod is not None:
             controller = controller_mod
-        if tenant_id_mod:
+        if tenant_id_mod is not None:
             tenant_id = tenant_id_mod
-        if ssl_verify_mod:
+        if ssl_verify_mod is not None:
             ssl_verify = ssl_verify_mod
-        if ignore_region_mod:
+        if ignore_region_mod is not None:
             ignore_region = ignore_region_mod
 
     if not auth_token:
