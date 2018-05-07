@@ -196,7 +196,7 @@ def run_module():
 
         # update result
         result = dict(
-            changed=False,
+            changed=True,
             operation=operation,
             image_id=updated_element_state_result['image_id'],
             meta=element_state_describe_response.cgx_content

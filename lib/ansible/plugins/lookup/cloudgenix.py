@@ -443,25 +443,25 @@ class LookupModule(LookupBase):
         ignore_region = variables.get('ignore_region')
 
         # Check args, then check root terms as well.
-        if not auth_token:
+        if auth_token is None:
             auth_token = kwargs.get(text_type('auth_token'))
-            if not auth_token and isinstance(terms, dict):
+            if auth_token is None and isinstance(terms, dict):
                 auth_token = terms.get('auth_token')
-        if not controller:
+        if controller is None:
             controller = kwargs.get(text_type('controller'))
-            if not controller and isinstance(terms, dict):
+            if controller is None and isinstance(terms, dict):
                 controller = terms.get('controller')
-        if not tenant_id:
+        if tenant_id is None:
             tenant_id = kwargs.get(text_type('tenant_id'))
-            if not tenant_id and isinstance(terms, dict):
+            if tenant_id is None and isinstance(terms, dict):
                 tenant_id = terms.get('tenant_id')
-        if not ssl_verify:
+        if ssl_verify is None:
             ssl_verify = kwargs.get(text_type('ssl_verify'))
-            if not ssl_verify and isinstance(terms, dict):
+            if ssl_verify is None and isinstance(terms, dict):
                 ssl_verify = terms.get('ssl_verify')
-        if not ignore_region:
+        if ignore_region is None:
             ignore_region = kwargs.get(text_type('ignore_region'))
-            if not ignore_region and isinstance(terms, dict):
+            if ignore_region is None and isinstance(terms, dict):
                 ignore_region = terms.get('ignore_region')
 
         auth_token, controller, tenant_id, cgx_session = \
@@ -485,9 +485,13 @@ class LookupModule(LookupBase):
         display.vvvvvv("cloudgenix cloudgenix vars:\n"
                        "\tAUTH_TOKEN: {0}\n"
                        "\tCONTROLLER: {1}\n"
-                       "\tTENANT_ID: {2}\n"
-                       "\tCGX_SESSION: {3}\n".format(text_type(auth_token),
+                       "\tSSL_VERIFY: {2}\n"
+                       "\tIGNORE_REGION: {3}\n"
+                       "\tTENANT_ID: {4}\n"
+                       "\tCGX_SESSION: {5}\n".format(text_type(auth_token),
                                                      text_type(controller),
+                                                     text_type(ssl_verify),
+                                                     text_type(ignore_region),
                                                      text_type(tenant_id),
                                                      text_type(cgx_session)))
 
