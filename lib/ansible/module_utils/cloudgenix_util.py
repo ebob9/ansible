@@ -68,12 +68,12 @@ def setup_cloudgenix_connection(module=None, auth_token=None, controller=None, t
 
     if not controller:
         # can recreate controller if REGION
-        if 'REGION' in os.environ:
-            if 'ENV' in os.environ:
-                controller = "https://api-" + string_types(os.environ.get('ENV')) + "." + \
-                             string_types(os.environ.get('REGION')) + ".cloudgenix.com"
+        if 'REGION' in os.environ and os.environ.get('REGION') and os.environ.get('REGION') != 'None':
+            if 'ENV' in os.environ and os.environ.get('ENV') and os.environ.get('ENV') != 'None':
+                controller = "https://api-" + str(os.environ.get('ENV')) + "." + \
+                             str(os.environ.get('REGION')) + ".cloudgenix.com"
             else:
-                controller = "https://api." + string_types(os.environ.get('REGION')) + ".cloudgenix.com"
+                controller = "https://api." + str(os.environ.get('REGION')) + ".cloudgenix.com"
         else:
             # use default API endpoint if all else fails.
             controller = "https://api.elcapitan.cloudgenix.com"
